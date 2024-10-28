@@ -1,3 +1,3 @@
-FROM nginx:alpine
+FROM nginx:mainline-alpine-slim
 WORKDIR /usr/share/nginx/html
 COPY . .
