@@ -15,7 +15,7 @@ $(function() {
         $searchSubmit = $('#search'),
         $urlOutput = $('#url-output'),
         $tips = $('#tips'),
-        $stop = $('#stop'),
+        // $stop = $('#stop'),
         $arrow = $('#arrow');
     
     var stepTimeout, typeInterval;
@@ -33,7 +33,7 @@ $(function() {
     /* 有参数，启动教程 */
     if(!!query) {
         $tips.html('Позволь, я научу тебя пользоваться поиском');
-        $stop.fadeIn();
+        // $stop.fadeIn();
 
         stepTimeout = setTimeout(function() {
             $tips.html('Шаг 1. Выбери поле ввода');
@@ -78,15 +78,15 @@ $(function() {
     }
 
     /* 自己人，停下 */ 
-    $stop.click(function() {
-        clearTimeout(stepTimeout);
-        clearInterval(typeInterval);
-        $stop.hide();
-        $arrow.stop().hide();
-        $kw.val(query);
-        query = false;
-        $tips.html('Введите вопрос и выполните поиск в Google');
-    });
+    // $stop.click(function() {
+    //     clearTimeout(stepTimeout);
+    //     clearInterval(typeInterval);
+    //     $stop.hide();
+    //     $arrow.stop().hide();
+    //     $kw.val(query);
+    //     query = false;
+    //     $tips.html('Введите вопрос и выполните поиск в Google');
+    // });
 
     /* 提交 */
     $('#search').on('click', function() {
