@@ -29,7 +29,7 @@ jobs:
       - name: Build and push priviled
         uses: docker/build-push-action@v6
         with:
-          platforms: linux/amd64,linux/arm64
+          platforms: linux/amd64
           push: true
           tags: |
             epmakoff/lmgtfy:latest
@@ -37,7 +37,7 @@ jobs:
       - name: Build and push unpriviled
         uses: docker/build-push-action@v6
         with:
-          platforms: linux/amd64,linux/arm64
+          platforms: linux/amd64
           push: true
           file: Dockerfile-unprivileged
           tags: |
