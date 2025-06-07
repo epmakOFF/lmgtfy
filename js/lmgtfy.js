@@ -1,9 +1,7 @@
-/* 低版本 IE polyfill */ 
 if(!window.location.origin) {
     window.location.origin = window.location.protocol + "//" + window.location.hostname + (window.location.port ? ':' + window.location.port: '');
 }
 
-/* 扩展一个getUrlParam的方法 */
 $.getUrlParam = function(name) {
     var reg = new RegExp("(^|&)" + name + "=([^&]*)(&|$)");
     var r = window.location.search.substr(1).match(reg);
@@ -20,7 +18,6 @@ $(function() {
     
     var stepTimeout, typeInterval;
 
-    /* 获取并解析查询参数。参数加 Base64 编码是防止别人直接从链接中猜出了结果，而拒绝点击 */ 
     var query = $.getUrlParam('q');
     if(!!query) {
         try {
@@ -30,7 +27,6 @@ $(function() {
         }
     }
 
-    /* 有参数，启动教程 */
     if(!!query) {
         $tips.html('Позволь, я научу тебя пользоваться поиском');
         // $stop.fadeIn();
@@ -88,7 +84,6 @@ $(function() {
     //     $tips.html('Введите вопрос и выполните поиск в Google');
     // });
 
-    /* 提交 */
     $('#search').on('click', function() {
         if(!!query) return false;
 
@@ -104,7 +99,6 @@ $(function() {
         return false;
     });
 
-    /* 复制结果 */ 
     var clipboard = new ClipboardJS('[data-clipboard-target]');
     clipboard.on('success', function(e) {
         $tips.html('<span style="color: #4caf50">Успешно скопировано!</span>');
@@ -113,7 +107,6 @@ $(function() {
         $tips.html('<span style="color: red">Не удалось скопировать, скопируйте вручную</span>');
     });
 
-    /* 预览 */ 
     $('#preview').click(function() {
         var link = $urlOutput.val();
         if (!!link) {
@@ -121,7 +114,6 @@ $(function() {
         }
     });
 
-    /* 手气不错 */ 
     $('#search2').on('click', function(){
         if ($(".search-text").attr("data-site") == "google") {
             window.location = 'https://www.google.com/search?q=' + encodeURIComponent($('#kw').val());
@@ -131,7 +123,6 @@ $(function() {
     });
 });
 
-/* 关于 */
 function showAbout(){
     var windowWidth = $(window).width();
     var windowHeight = $(window).height();
@@ -145,7 +136,6 @@ function hideAbout(){
     $("#msgbox").fadeOut(200); 
 }
 
-/* Google 测试 */
 function gtest(){
     var img = new Image();
     var timeout = setTimeout(function(){
