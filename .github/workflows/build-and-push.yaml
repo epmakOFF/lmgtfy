@@ -1,0 +1,45 @@
+name: ci
+
+on:
+  push:
+
+jobs:
+  docker:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Login to Docker Hub
+        uses: docker/login-action@v3
+        with:
+          username: epmakoff
+          password: ${{ secrets.DOCKERHUB_TOKEN }}
+
+      - name: Login to Yandex Container Registry
+        uses: docker/login-action@v3
+        with:
+          registry: cr.yandex
+          username: oauth
+          password: ${{ secrets.YC_TOKEN }}
+
+      - name: Set up QEMU
+        uses: docker/setup-qemu-action@v3
+
+      - name: Set up Docker Buildx
+        uses: docker/setup-buildx-action@v3
+
+      - name: Build and push priviled
+        uses: docker/build-push-action@v6
+        with:
+          platforms: linux/amd64
+          push: true
+          tags: |
+            epmakoff/lmgtfy:latest
+
+      - name: Build and push unpriviled
+        uses: docker/build-push-action@v6
+        with:
+          platforms: linux/amd64
+          push: true
+          file: Dockerfile-unprivileged
+          tags: |
+            epmakoff/lmgtfy:unprivileged
+            ${{ secrets.YC_REGISTRY }}/lmgtfy:latest

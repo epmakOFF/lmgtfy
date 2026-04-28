@@ -1,0 +1,4 @@
+FROM nginxinc/nginx-unprivileged:mainline-alpine3.21-slim
+WORKDIR /usr/share/nginx/html
+COPY . .
+EXPOSE 8080
